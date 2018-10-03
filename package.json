@@ -2,18 +2,23 @@
 	"name": "Admin",
 	"version": "0.1.0",
 	"private": true,
+	"main": "app.js",
 	"scripts": {
-		"serve": "vue-cli-service serve",
+		"prestart": "npm run build",
+		"start": "node app.js",
+		"dev": "vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"lint": "vue-cli-service lint",
 		"precommit": "pretty-quick --staged"
 	},
 	"dependencies": {
-		"axios": "^0.18.0",
-		"element-ui": "^2.4.8",
-		"vue": "^2.5.17",
-		"vue-router": "^3.0.1",
-		"vuex": "^3.0.1"
+		"connect-history-api-fallback": "^1.5.0",
+		"koa": "^2.5.3",
+		"koa-body": "^4.0.4",
+		"koa-onerror": "^4.1.0",
+		"koa-router": "^7.4.0",
+		"koa-static": "^5.0.0",
+		"request": "^2.88.0"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "^3.0.4",
@@ -25,7 +30,12 @@
 		"pretty-quick": "^1.7.0",
 		"vue-loader": "^15.4.2",
 		"vue-style-loader": "^4.1.2",
-		"vue-template-compiler": "^2.5.17"
+		"vue-template-compiler": "^2.5.17",
+		"axios": "^0.18.0",
+		"element-ui": "^2.4.8",
+		"vue": "^2.5.17",
+		"vue-router": "^3.0.1",
+		"vuex": "^3.0.1"
 	},
 	"eslintConfig": {
 		"root": true,

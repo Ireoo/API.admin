@@ -62,5 +62,6 @@ files.keys().forEach(key => {
 // });
 
 export default new Router({
+	mode: "history",
 	routes
 });
