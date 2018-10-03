@@ -12,13 +12,13 @@
 					<el-col>
 						<label :class="{focus: focus.password}">
 							<span>密码</span>
-							<el-input @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password"></el-input>
+							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.passwordTwo}">
 							<span>确认密码</span>
-							<el-input @focus="focus.passwordTwo=true" @blur="focus.passwordTwo=form.passwordTwo==''?false:true" :placeholder="focus.passwordTwo?placeholder.passwordTwo:''" v-model="form.passwordTwo"></el-input>
+							<el-input type="password" @focus="focus.passwordTwo=true" @blur="focus.passwordTwo=form.passwordTwo==''?false:true" :placeholder="focus.passwordTwo?placeholder.passwordTwo:''" v-model="form.passwordTwo"></el-input>
 						</label>
 					</el-col>
 					<el-col>
