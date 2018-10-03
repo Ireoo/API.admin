@@ -16,12 +16,18 @@
 						</label>
 					</el-col>
 					<el-col>
+						<label :class="{focus: focus.passwordTwo}">
+							<span>确认密码:</span>
+							<el-input @focus="focus.passwordTwo=true" @blur="focus.passwordTwo=form.passwordTwo==''?false:true" :placeholder="focus.passwordTwo?placeholder.passwordTwo:''" v-model="form.passwordTwo"></el-input>
+						</label>
+					</el-col>
+					<el-col>
 						<el-row type="flex" align="bottom">
 							<el-col :span="12">
-								<el-button type="primary" @click="login">登陆</el-button>
+								<el-button type="primary" @click="login">注册</el-button>
 							</el-col>
 							<el-col :span="12" class="text-right">
-								<router-link to="/reg">注册一个账号</router-link>
+								<router-link to="/login">登陆</router-link>
 							</el-col>
 						</el-row>
 					</el-col>
@@ -38,15 +44,18 @@ export default {
 		return {
 			focus: {
 				username: false,
-				password: false
+				password: false,
+				passwordTwo: false
 			},
 			placeholder: {
 				username: "手机号/邮箱",
-				password: "格式:[A-Z]{1}(.*){7,}"
+				password: "格式:[A-Z]{1}(.*){7,}",
+				passwordTwo: "再次输入一遍"
 			},
 			form: {
 				username: "",
-				password: ""
+				password: "",
+				passwordTwo: ""
 			}
 		};
 	},

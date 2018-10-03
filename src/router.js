@@ -45,7 +45,7 @@ files.keys().forEach(key => {
 			file: key,
 			index: component.index,
 			icon: component.icon,
-			bottom: component.bottom
+			show: component.show || false
 		}
 	};
 
