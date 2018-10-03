@@ -9,6 +9,8 @@
 		"precommit": "pretty-quick --staged"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
+		"element-ui": "^2.4.8",
 		"vue": "^2.5.17",
 		"vue-router": "^3.0.1",
 		"vuex": "^3.0.1"
@@ -17,10 +19,12 @@
 		"@vue/cli-plugin-babel": "^3.0.4",
 		"@vue/cli-plugin-eslint": "^3.0.4",
 		"@vue/cli-service": "^3.0.4",
+		"css-loader": "^1.0.0",
 		"husky": "^1.1.0",
 		"prettier": "^1.14.3",
 		"pretty-quick": "^1.7.0",
-		"vue-cli-plugin-element-ui": "^1.1.4",
+		"vue-loader": "^15.4.2",
+		"vue-style-loader": "^4.1.2",
 		"vue-template-compiler": "^2.5.17"
 	},
 	"eslintConfig": {
