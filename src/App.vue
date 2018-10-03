@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-/* @import url("//unpkg.com/element-ui@2.4.7/lib/theme-chalk/index.css"); */
+@import url("//at.alicdn.com/t/font_860942_6k7yuves3ae.css");
 
 * {
 	margin: 0;
