@@ -8,7 +8,7 @@
 		"dev": "vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"lint": "vue-cli-service lint",
-		"precommit": "pretty-quick --staged && npm run build"
+		"precommit": "npm run build && pretty-quick --staged"
 	},
 	"dependencies": {
 		"connect-history-api-fallback": "^1.5.0",
