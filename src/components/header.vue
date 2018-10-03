@@ -3,7 +3,7 @@
 	  <el-col :span="12">
 		  <el-row>
 			  <el-col :span="8">
-				  <router-link to="/">琦益数据管理中心</router-link>
+				  <router-link to="/"><i class="el-icon-setting"></i>琦益数据管理中心</router-link>
 			  </el-col>
 		  </el-row>
 	  </el-col>

@@ -5,13 +5,13 @@
 				<el-row class="form">
 					<el-col>
 						<label :class="{focus: focus.username}">
-							<span>用户名:</span>
+							<span>用户名</span>
 							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.password}">
-							<span>密码:</span>
+							<span>密码</span>
 							<el-input @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password"></el-input>
 						</label>
 					</el-col>
