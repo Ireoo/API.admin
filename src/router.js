@@ -51,7 +51,7 @@ files.keys().forEach(key => {
 
 	routes.push(route);
 
-	console.log(`加载文件: ${key} \r\n挂载点: ${route.path} \r\n完成!`);
+	if (process.env.NODE_ENV !== "production") console.log(`加载文件: ${key} \r\n挂载点: ${route.path} \r\n完成!`);
 });
 
 // routes.push({
@@ -61,7 +61,6 @@ files.keys().forEach(key => {
 //     file: `To /home`
 // });
 
-export default new Router({
-	mode: "history",
-	routes
-});
+const router = { routes };
+if (process.env.NODE_ENV === "production") router.mode = "history";
+export default new Router(router);

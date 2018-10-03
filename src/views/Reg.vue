@@ -61,7 +61,7 @@ export default {
 	},
 	methods: {
 		login() {
-			console.log(this.form);
+			this.console(this.form);
 		}
 	},
 	mounted() {}
