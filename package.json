@@ -12,6 +12,8 @@
 		"precommit": "pretty-quick --staged"
 	},
 	"dependencies": {
+		"@vue/cli-plugin-babel": "^3.0.4",
+		"@vue/cli-plugin-eslint": "^3.0.4",
 		"@vue/cli-service": "^3.0.4",
 		"cross-env": "^5.2.0",
 		"connect-history-api-fallback": "^1.5.0",
@@ -23,8 +25,6 @@
 		"request": "^2.88.0"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-babel": "^3.0.4",
-		"@vue/cli-plugin-eslint": "^3.0.4",
 		"axios": "^0.18.0",
 		"css-loader": "^1.0.0",
 		"element-ui": "^2.4.8",
