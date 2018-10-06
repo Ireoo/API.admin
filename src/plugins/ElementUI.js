@@ -1,9 +1,9 @@
 import Vue from "vue";
-import elementUI from "element-ui";
+import ElementUI from "element-ui";
 
 import "element-ui/lib/theme-chalk/index.css";
 // import "element-ui/lib/theme-chalk/row.css";
 
-Vue.use(elementUI);
+Vue.use(ElementUI);
 
 export default Vue;

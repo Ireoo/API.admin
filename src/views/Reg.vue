@@ -6,25 +6,25 @@
 					<el-col>
 						<label :class="{focus: focus.username}">
 							<span>用户名</span>
-							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username"></el-input>
+							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username" :disabled="loading"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.password}">
 							<span>密码</span>
-							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password"></el-input>
+							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password" :disabled="loading"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.passwordTwo}">
 							<span>确认密码</span>
-							<el-input type="password" @focus="focus.passwordTwo=true" @blur="focus.passwordTwo=form.passwordTwo==''?false:true" :placeholder="focus.passwordTwo?placeholder.passwordTwo:''" v-model="form.passwordTwo"></el-input>
+							<el-input type="password" @focus="focus.passwordTwo=true" @blur="focus.passwordTwo=form.passwordTwo==''?false:true" :placeholder="focus.passwordTwo?placeholder.passwordTwo:''" v-model="form.passwordTwo" :disabled="loading"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<el-row type="flex" align="bottom">
 							<el-col :span="12">
-								<el-button type="primary" @click="login">注册</el-button>
+								<el-button type="primary" @click="reg" :loading="loading">注册</el-button>
 							</el-col>
 							<el-col :span="12" class="text-right">
 								<router-link to="/login">登陆</router-link>
@@ -56,12 +56,36 @@ export default {
 				username: "",
 				password: "",
 				passwordTwo: ""
-			}
+			},
+			loading: false
 		};
 	},
 	methods: {
-		login() {
-			this.console(this.form);
+		reg() {
+			this.loading = true;
+			// this.console(this.form);
+			let form = JSON.parse(JSON.stringify(this.form));
+			if (form.password === form.passwordTwo) {
+				form.password = this.$md5(form.password);
+				delete form.passwordTwo;
+				this.$http("users/insert", { data: form })
+					.then(data => {
+						this.$message.success(`${form.username} 用户注册成功!`);
+						this.loading = false;
+					})
+					.catch(e => {
+						switch (e.code) {
+							case 11000:
+								this.$message.error(`该用户已经存在,请尝试更换用户名!`);
+								break;
+
+							default:
+								this.$message.error(`未知错误: ${JSON.stringify(e)}`);
+								break;
+						}
+						this.loading = false;
+					});
+			}
 		}
 	},
 	mounted() {}

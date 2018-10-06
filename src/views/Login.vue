@@ -6,19 +6,19 @@
 					<el-col>
 						<label :class="{focus: focus.username}">
 							<span>用户名</span>
-							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username"></el-input>
+							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username" :disabled="loading"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.password}">
 							<span>密码</span>
-							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password"></el-input>
+							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password" :disabled="loading"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<el-row type="flex" align="bottom">
 							<el-col :span="12">
-								<el-button type="primary" @click="login">登陆</el-button>
+								<el-button type="primary" @click="login" :loading="loading">登陆</el-button>
 							</el-col>
 							<el-col :span="12" class="text-right">
 								<router-link to="/reg">注册一个账号</router-link>
@@ -47,12 +47,29 @@ export default {
 			form: {
 				username: "",
 				password: ""
-			}
+			},
+			loading: false
 		};
 	},
 	methods: {
 		login() {
-			this.console(this.form);
+			this.loading = true;
+			// this.console(this.form);
+			let form = JSON.parse(JSON.stringify(this.form));
+			form.password = this.$md5(form.password);
+			this.$http("users/findone", { where: form })
+				.then(data => {
+					if (data) {
+						this.$message.success(`${form.username} 用户登陆成功!`);
+					} else {
+						this.$message.error(`${form.username} 用户登陆失败,请稍后再试!`);
+					}
+					this.loading = false;
+				})
+				.catch(e => {
+					this.$message.error(`未知错误: ${JSON.stringify(e)}`);
+					this.loading = false;
+				});
 		}
 	},
 	mounted() {}
