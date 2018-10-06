@@ -4,6 +4,7 @@
 	"private": true,
 	"main": "app.js",
 	"scripts": {
+		"prestart": "npm run build",
 		"start": "node app.js",
 		"dev": "vue-cli-service serve",
 		"build": "cross-env NODE_ENV=production vue-cli-service build",
@@ -11,7 +12,6 @@
 		"precommit": "pretty-quick --staged"
 	},
 	"dependencies": {
-		"@vue/cli-service": "^3.0.4",
 		"connect-history-api-fallback": "^1.5.0",
 		"koa": "^2.5.3",
 		"koa-body": "^4.0.4",
@@ -21,6 +21,7 @@
 		"request": "^2.88.0"
 	},
 	"devDependencies": {
+		"@vue/cli-service": "^3.0.4",
 		"@vue/cli-plugin-babel": "^3.0.4",
 		"@vue/cli-plugin-eslint": "^3.0.4",
 		"axios": "^0.18.0",
