@@ -6,13 +6,13 @@
 					<el-col>
 						<label :class="{focus: focus.username}">
 							<span>用户名</span>
-							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username" :disabled="loading"></el-input>
+							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username" :disabled="loading" ref="username"></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.password}">
 							<span>密码</span>
-							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password" :disabled="loading"></el-input>
+							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password" :disabled="loading" ref="password"></el-input>
 						</label>
 					</el-col>
 					<el-col>
@@ -53,11 +53,13 @@ export default {
 	},
 	methods: {
 		login() {
+			if (this.form.username === "") return this.$refs.username.focus();
+			if (this.form.password === "") return this.$refs.password.focus();
 			this.loading = true;
 			// this.console(this.form);
 			let form = JSON.parse(JSON.stringify(this.form));
 			form.password = this.$md5(form.password);
-			this.$http("users/findone", { where: form })
+			this.$http("users/once", { where: form })
 				.then(data => {
 					if (data) {
 						this.$message.success(`${form.username} 用户登陆成功!`);
