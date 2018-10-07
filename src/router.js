@@ -36,14 +36,14 @@ files.keys().forEach(key => {
 
 	let route = {
 		path: filename.toLowerCase() === "index" ? `/${dir}` : `/${file.toLowerCase()}`,
-		name: filename.toLowerCase() === "index" && dirname != "" ? dirname : filename,
+		name: filename.toLowerCase() === "index" && dirname !== "" ? dirname : filename,
 		component: component,
 
 		meta: {
 			title: component.title,
 			nu: 0,
 			file: key,
-			index: component.index,
+			index: component.index | 0,
 			icon: component.icon || "",
 			show: component.show || false,
 			login: component.login || false

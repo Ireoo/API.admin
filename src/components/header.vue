@@ -2,47 +2,53 @@
 	<el-menu
 		:default-active="$route.path"
 		mode="horizontal"
-		background-color="#545c64"
+		background-color="#515961"
 		text-color="#fff"
 		:router="true"
 		active-text-color="#ffd04b">
-		<el-menu-item class="logo" index="/home">
-			<i class="iconfont icon-api logo"></i>
-			<span slot="title">琦益数据管理中心</span>
-		</el-menu-item>
-		<!-- <el-submenu index="2">
-          <template slot="title">
-              <span slot="title">我的工作台</span>
-              </template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-          <el-submenu index="2-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="2-4-1">选项1</el-menu-item>
-            <el-menu-item index="2-4-2">选项2</el-menu-item>
-            <el-menu-item index="2-4-3">选项3</el-menu-item>
-          </el-submenu>
-        </el-submenu> -->
 
-		<el-menu-item v-if="!$store.state.user.info" index="/login">
-			<i class="iconfont icon-denglu"></i>
-			<span slot="title">登陆</span>
-		</el-menu-item>
+		<el-row>
 
-		<el-menu-item v-if="!$store.state.user.info" index="/reg">
-			<span slot="title">注册</span>
-		</el-menu-item>
+			<el-col :span="12">
+				<el-menu-item class="logo" index="/home">
+					<i class="iconfont icon-api logo"></i>
+					<span slot="title">琦益数据管理中心</span>
+				</el-menu-item>
+				<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
+					<template slot="title">
+						<span slot="title">{{route.meta.title}}</span>
+					</template>
+					<el-menu-item :index="route.path">
+						<span slot="title">{{route.meta.title}}</span>
+					</el-menu-item>
+					<el-menu-item v-for="(router, i) in route.child" :key="i" :index="router.path">
+						<span slot="title">{{router.meta.title}}</span>
+					</el-menu-item>
+				</el-submenu>
+			</el-col>
+
+			<el-col class="right" :span="12">
+				<el-menu-item v-if="!$store.state.user.info" index="/login">
+					<i class="iconfont icon-denglu"></i>
+					<span slot="title">登陆</span>
+				</el-menu-item>
+
+				<el-menu-item v-if="!$store.state.user.info" index="/reg">
+					<span slot="title">注册</span>
+				</el-menu-item>
 
 
-		<el-menu-item v-if="$store.state.user.info" index="/admin">
-			<i class="iconfont icon-denglu"></i>
-			<span slot="title">{{$store.state.user.info.username}}</span>
-		</el-menu-item>
+				<el-menu-item v-if="$store.state.user.info" index="/account">
+					<i class="iconfont icon-denglu"></i>
+					<span slot="title">{{$store.state.user.info.username}}</span>
+				</el-menu-item>
 
-		<el-menu-item v-if="$store.state.user.info" index="/logout" @click="logout">
-			<span slot="title">退出</span>
-		</el-menu-item>
+				<el-menu-item v-if="$store.state.user.info" index="/logout" @click="logout">
+					<span slot="title">退出</span>
+				</el-menu-item>
+			</el-col>
+
+		</el-row>
 
 	</el-menu>
 </template>
@@ -54,6 +60,29 @@ export default {
 		logout() {
 			this.$store.commit("account.REMOVE");
 			location.href = "/";
+		}
+	},
+	data() {
+		return {
+			isCollapse: false,
+			show: ["App"]
+		};
+	},
+	computed: {
+		routes() {
+			let routes = this.$router.options.routes
+				.filter(route => this.show.indexOf(route.name) > -1)
+				.sort((a, b) => a.meta.index - b.meta.index)
+				.map(route => {
+					let r = JSON.parse(JSON.stringify(route));
+					r.child = this.$router.options.routes
+						.filter(t => new RegExp(`^${r.path}/`).test(t.path))
+						.sort((a, b) => a.meta.index - b.meta.index);
+					// console.log(r);
+					return r;
+				});
+			console.log(routes);
+			return routes;
 		}
 	}
 };
@@ -67,10 +96,28 @@ i {
 
 .el-menu-item.logo {
 	width: 240px;
+	background: RGB(65, 71, 78) !important;
+}
+
+.el-col {
+	height: 60px;
+}
+
+.el-col.right {
+	text-align: right;
+}
+
+.el-col > .el-menu-item,
+.el-col > .el-submenu {
+	height: 60px;
+	line-height: 60px;
+	display: inline-block;
 }
 
 i.logo {
 	font-size: 24px;
+	color: #4898f8;
+	/*font-weight: bold;*/
 }
 
 a {
@@ -91,14 +138,14 @@ ul {
 }
 
 /* ul.left > li {
-        line-height: 40px;
-        float: left;
-    }
+            line-height: 40px;
+            float: left;
+        }
 
-    ul.left > li > a {
-        font-size: 14px;
-        font-weight: bold;
-    } */
+        ul.left > li > a {
+            font-size: 14px;
+            font-weight: bold;
+        } */
 
 ul.right > li {
 	text-align: right;

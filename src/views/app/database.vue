@@ -5,7 +5,7 @@
 <script>
 export default {
 	name: "info",
-	title: "基础信息",
+	title: "数据库信息",
 	icon: "iconfont icon-database1",
 	show: true,
 	methods: {

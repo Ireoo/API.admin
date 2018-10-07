@@ -1,3 +1,4 @@
+const path = require("path");
 const Koa = require("koa");
 const app = new Koa();
 const proxy = require("./middleware/proxy");
@@ -16,21 +17,21 @@ app.use(
 	})
 );
 
-app.use(koaStatic(__dirname + "/dist"));
+app.use(koaStatic(path.join(__dirname, "/dist")));
 
 //控制台打印请求信息
 app.use(async (ctx, next) => {
 	const start = Date.now();
 	await next();
 	const ms = Date.now() - start;
-	console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+	// console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
 app.use(bodypaser());
 
 app.use(
 	proxy("/api", {
-		target: "https://api.now.sh"
+		target: "https://apo.herokuapp.com"
 	})
 );
 
