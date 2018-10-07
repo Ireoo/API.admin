@@ -5,7 +5,7 @@
     </el-header>
 
     <el-container>
-      <el-aside v-if="$route.meta.show" style="width: auto;">
+      <el-aside v-if="$route.meta.show" style="width: 240px;">
 		  <Sider></Sider>
       </el-aside>
 
@@ -66,19 +66,6 @@ export default {
 	margin: 0;
 	padding: 0;
 	font-size: 14px;
-}
-
-a {
-	color: #333;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-.text-right {
-	text-align: right;
 }
 </style>
 
