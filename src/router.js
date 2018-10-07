@@ -44,8 +44,9 @@ files.keys().forEach(key => {
 			nu: 0,
 			file: key,
 			index: component.index,
-			icon: component.icon,
-			show: component.show || false
+			icon: component.icon || "",
+			show: component.show || false,
+			login: component.login || false
 		}
 	};
 

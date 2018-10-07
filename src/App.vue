@@ -5,8 +5,8 @@
     </el-header>
 
     <el-container>
-      <el-aside v-if="$route.meta.show">
-
+      <el-aside v-if="$route.meta.show" style="width: auto;">
+		  <Sider></Sider>
       </el-aside>
 
       <!-- <el-container> -->
@@ -25,11 +25,36 @@
 
 <script>
 import Header from "./components/header.vue";
+import Sider from "./components/sider.vue";
 
 export default {
 	name: "App",
+	data() {
+		return {
+			uri: ""
+		};
+	},
 	components: {
-		Header
+		Header,
+		Sider
+	},
+	watch: {
+		"$store.state.user.info": function(v) {
+			if (!v && this.$route.meta.login) {
+				this.uri = this.$route.path;
+				this.$router.push({ path: "/login" });
+			} else if (v && (this.$route.name === "Login" || this.$route.name === "Reg")) {
+				if (this.uri === "") this.$router.push({ path: "/home" });
+				else this.$router.push({ path: this.uri });
+			}
+		}
+	},
+	mounted() {
+		console.log(this.$router);
+		if (!this.$store.state.user.info && this.$route.meta.login) {
+			this.uri = this.$route.path;
+			this.$router.push({ path: "/login" });
+		}
 	}
 };
 </script>
@@ -60,7 +85,8 @@ a:hover {
 
 <style scoped>
 header {
-	background: #4898f8;
+	background: #545c64;
+	padding: 0;
 }
 
 main.body {

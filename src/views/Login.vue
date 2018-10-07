@@ -33,7 +33,7 @@
 
 <script>
 export default {
-	name: "Login",
+	name: "login",
 	data() {
 		return {
 			focus: {
@@ -63,6 +63,7 @@ export default {
 				.then(data => {
 					if (data) {
 						this.$message.success(`${form.username} 用户登陆成功!`);
+						this.$store.commit("account.UPDATE", data);
 					} else {
 						this.$message.error(`${form.username} 用户登陆失败,请稍后再试!`);
 					}

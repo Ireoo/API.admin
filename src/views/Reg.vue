@@ -39,7 +39,7 @@
 
 <script>
 export default {
-	name: "Login",
+	name: "reg",
 	data() {
 		return {
 			focus: {
@@ -75,6 +75,7 @@ export default {
 					.then(data => {
 						this.$message.success(`${form.username} 用户注册成功!`);
 						this.loading = false;
+						this.$store.commit("account.UPDATE", data);
 					})
 					.catch(e => {
 						switch (e.code) {
