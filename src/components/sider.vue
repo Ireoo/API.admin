@@ -7,7 +7,8 @@
 		active-text-color="#ffd04b"
 		menu-trigger="click"
 		:router="true"
-		:collapse="isCollapse">
+		:collapse="isCollapse"
+	>
 		<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
 			<template slot="title">
 				<i :class="route.meta.icon"></i>
@@ -22,7 +23,6 @@
 				<span slot="title">{{router.meta.title}}</span>
 			</el-menu-item>
 		</el-submenu>
-
 	</el-menu>
 </template>
 

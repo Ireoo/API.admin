@@ -6,19 +6,42 @@
 					<el-col>
 						<label :class="{focus: focus.username}">
 							<span>用户名</span>
-							<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username" :disabled="loading"  ref="username"></el-input>
+							<el-input
+								@focus="focus.username=true"
+								@blur="focus.username=form.username==''?false:true"
+								:placeholder="focus.username?placeholder.username:''"
+								v-model="form.username"
+								:disabled="loading"
+								ref="username"
+							></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.password}">
 							<span>密码</span>
-							<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password" :disabled="loading"  ref="password"></el-input>
+							<el-input
+								type="password"
+								@focus="focus.password=true"
+								@blur="focus.password=form.password==''?false:true"
+								:placeholder="focus.password?placeholder.password:''"
+								v-model="form.password"
+								:disabled="loading"
+								ref="password"
+							></el-input>
 						</label>
 					</el-col>
 					<el-col>
 						<label :class="{focus: focus.passwordTwo}">
 							<span>确认密码</span>
-							<el-input type="password" @focus="focus.passwordTwo=true" @blur="focus.passwordTwo=form.passwordTwo==''?false:true" :placeholder="focus.passwordTwo?placeholder.passwordTwo:''" v-model="form.passwordTwo" :disabled="loading"  ref="passwordTwo"></el-input>
+							<el-input
+								type="password"
+								@focus="focus.passwordTwo=true"
+								@blur="focus.passwordTwo=form.passwordTwo==''?false:true"
+								:placeholder="focus.passwordTwo?placeholder.passwordTwo:''"
+								v-model="form.passwordTwo"
+								:disabled="loading"
+								ref="passwordTwo"
+							></el-input>
 						</label>
 					</el-col>
 					<el-col>

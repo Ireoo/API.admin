@@ -1,26 +1,20 @@
 <template>
-  <el-container id="app">
-    <el-header>
-      <Header></Header>
-    </el-header>
-
-    <el-container>
-      <el-aside v-if="$route.meta.show" style="width: 240px;">
-		  <Sider></Sider>
-      </el-aside>
-
-      <!-- <el-container> -->
-        <el-main :class="{body: !$route.meta.show}">
-          <router-view />
-        </el-main>
-      <!-- </el-container> -->
-
-    </el-container>
-
-    <el-footer>
-
-    </el-footer>
-  </el-container>
+	<el-container id="app">
+		<el-header>
+			<Header></Header>
+		</el-header>
+		<el-container>
+			<el-aside v-if="$route.meta.show" style="width: 240px;">
+				<Sider></Sider>
+			</el-aside>
+			<!-- <el-container> -->
+			<el-main :class="{body: !$route.meta.show}">
+				<router-view/>
+			</el-main>
+			<!-- </el-container> -->
+		</el-container>
+		<el-footer></el-footer>
+	</el-container>
 </template>
 
 <script>
