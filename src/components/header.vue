@@ -81,7 +81,7 @@ export default {
 					// console.log(r);
 					return r;
 				});
-			console.log(routes);
+			// console.log(routes);
 			return routes;
 		}
 	}

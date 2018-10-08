@@ -32,24 +32,7 @@ export default {
 		Header,
 		Sider
 	},
-	watch: {
-		"$store.state.user.info": function(v) {
-			if (!v && this.$route.meta.login) {
-				this.uri = this.$route.path;
-				this.$router.push({ path: "/login" });
-			} else if (v && (this.$route.name === "Login" || this.$route.name === "Reg")) {
-				if (this.uri === "") this.$router.push({ path: "/home" });
-				else this.$router.push({ path: this.uri });
-			}
-		}
-	},
-	mounted() {
-		console.log(this.$router);
-		if (!this.$store.state.user.info && this.$route.meta.login) {
-			this.uri = this.$route.path;
-			this.$router.push({ path: "/login" });
-		}
-	}
+	mounted() {}
 };
 </script>
 

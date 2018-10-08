@@ -8,6 +8,7 @@ export default {
 	title: "数据库信息",
 	icon: "iconfont icon-database1",
 	show: true,
+	login: true,
 	methods: {
 		logout() {
 			this.$store.commit("account.REMOVE");
