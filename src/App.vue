@@ -56,7 +56,6 @@ export default {
 
 .el-scrollbar {
 	height: 100%;
-	overflow: hidden;
 }
 
 .el-scrollbar__wrap {
