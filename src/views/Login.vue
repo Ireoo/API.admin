@@ -1,17 +1,33 @@
 <template>
 	<el-row class="main" type="flex" justify="center">
-		<el-col :span="12" style="min-width: 400px;">
+		<el-col :span="12" style="min-width: 300px; max-width: 600px;">
 			<el-row class="form">
 				<el-col>
 					<label :class="{focus: focus.username}">
 						<span>用户名</span>
-						<el-input @focus="focus.username=true" @blur="focus.username=form.username==''?false:true" :placeholder="focus.username?placeholder.username:''" v-model="form.username" :disabled="loading" ref="username"></el-input>
+						<el-input
+							:autofocus="true"
+							@focus="focus.username=true"
+							@blur="focus.username=form.username==''?false:true"
+							:placeholder="focus.username?placeholder.username:''"
+							v-model="form.username"
+							:disabled="loading"
+							ref="username"
+						></el-input>
 					</label>
 				</el-col>
 				<el-col>
 					<label :class="{focus: focus.password}">
 						<span>密码</span>
-						<el-input type="password" @focus="focus.password=true" @blur="focus.password=form.password==''?false:true" :placeholder="focus.password?placeholder.password:''" v-model="form.password" :disabled="loading" ref="password"></el-input>
+						<el-input
+							type="password"
+							@focus="focus.password=true"
+							@blur="focus.password=form.password==''?false:true"
+							:placeholder="focus.password?placeholder.password:''"
+							v-model="form.password"
+							:disabled="loading"
+							ref="password"
+						></el-input>
 					</label>
 				</el-col>
 				<el-col>

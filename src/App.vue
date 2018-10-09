@@ -1,23 +1,24 @@
 <template>
-	<el-container id="app" ref="app" class="wrapper">
+	<el-container id="app" ref="app" :class="['wrapper', {ios}]">
 		<el-header>
 			<Header :collapse="collapse"></Header>
 		</el-header>
 		<el-container>
-			<el-aside :class="{collapse}" v-if="$route.meta.show">
+			<el-aside :class="{collapse: mini}" v-if="$route.meta.show">
 				<el-scrollbar>
-					<Sider :collapse="collapse"></Sider>
+					<Sider :collapse="mini"></Sider>
 				</el-scrollbar>
 			</el-aside>
 			<!-- <el-container> -->
 			<el-main :class="{body: !$route.meta.show}">
 				<el-scrollbar>
-					<router-view/>
+					<router-view :class="['content', {collapse}]"/>
+					Width: {{width}}
 				</el-scrollbar>
 			</el-main>
-			<!-- </el-container> -->
+			<!-- <el-footer>Width: {{width}}</el-footer>
+			</el-container>-->
 		</el-container>
-		<!--<el-footer></el-footer>-->
 	</el-container>
 </template>
 
@@ -30,7 +31,10 @@ export default {
 	data() {
 		return {
 			uri: "",
-			collapse: document.documentElement.clientWidth < 500
+			width: document.documentElement.clientWidth,
+			mini: document.documentElement.clientWidth < 900,
+			collapse: document.documentElement.clientWidth < 500,
+			ios: !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
 		};
 	},
 	components: {
@@ -39,14 +43,16 @@ export default {
 	},
 	mounted() {
 		window.onresize = () => {
-			this.collapse = document.documentElement.clientWidth < 500;
+			this.collapse = document.documentElement.clientWidth < 700;
+			this.mini = document.documentElement.clientWidth < 900;
+			this.width = document.documentElement.clientWidth;
 		};
 	}
 };
 </script>
 
 <style>
-@import url("//at.alicdn.com/t/font_860942_ktbhb8ijtc.css");
+@import url("//at.alicdn.com/t/font_860942_tnt9fhllrnc.css");
 
 * {
 	margin: 0;
@@ -60,6 +66,38 @@ export default {
 
 .el-scrollbar__wrap {
 	overflow-x: hidden !important;
+}
+
+#app.ios .el-input__inner {
+	font-size: 16px !important;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.el-form {
+	min-width: 500px;
+	max-width: 700px;
+}
+
+.content.collapse .el-col-12 {
+	width: 100%;
+}
+
+.content.collapse .el-form {
+	min-width: auto;
+	max-width: auto;
+	width: 100%;
+}
+
+.content.collapse .el-form-item__label {
+	float: none;
+}
+
+.content.collapse .el-form-item__content {
+	float: none;
+	margin-left: 0 !important;
 }
 </style>
 
@@ -88,8 +126,16 @@ aside.collapse {
 	background: #545c64;
 }
 
+main {
+	padding: 0 !important;
+}
+
 main.body {
 	margin: auto;
 	max-width: 800px;
+}
+
+.content {
+	padding: 20px;
 }
 </style>

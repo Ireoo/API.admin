@@ -1,29 +1,32 @@
 <template>
-	<el-menu
-		:default-active="$route.path"
-		:class="['sider', {collapse}]"
-		background-color="#545c64"
-		text-color="#fff"
-		active-text-color="#ffd04b"
-		menu-trigger="click"
-		:router="true"
-		:collapse="collapse"
-	>
-		<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
-			<template slot="title">
-				<i :class="route.meta.icon"></i>
-				<span>{{route.meta.title}}</span>
-			</template>
-			<el-menu-item :index="route.path">
-				<i :class="route.meta.icon"></i>
-				<span slot="title">概况</span>
-			</el-menu-item>
-			<el-menu-item v-for="(router, i) in route.child" :key="i" :index="router.path">
-				<i :class="router.meta.icon"></i>
-				<span slot="title">{{router.meta.title}}</span>
-			</el-menu-item>
-		</el-submenu>
-	</el-menu>
+	<el-row>
+		<el-col>
+			<el-menu
+				:default-active="$route.path"
+				:class="['sider', {collapse}]"
+				background-color="#545c64"
+				text-color="#fff"
+				active-text-color="#ffd04b"
+				:router="true"
+				:collapse="collapse"
+				menu-trigger="click"
+			>
+				<el-menu-item-group v-for="(route, index) in routes" :key="index" :index="route.path">
+					<template slot="title">{{collapse ? "" : route.meta.title}}</template>
+					<el-menu-item :index="route.path">
+						<i :class="route.meta.icon"></i>
+						<span slot="title">{{route.meta.title}}</span>
+					</el-menu-item>
+					<el-menu-item v-for="(router, i) in route.child" :key="i" :index="router.path">
+						<!-- <el-menu-item> -->
+						<i :class="router.meta.icon"></i>
+						<span slot="title">{{router.meta.title}}</span>
+						<!-- </el-menu-item> -->
+					</el-menu-item>
+				</el-menu-item-group>
+			</el-menu>
+		</el-col>
+	</el-row>
 </template>
 
 <script>

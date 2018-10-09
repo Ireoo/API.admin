@@ -1,28 +1,17 @@
 <template>
-	<el-tree
-		:props="database"
-		:load="loadNode"
-		lazy
-		show-checkbox
-		@check-change="handleCheckChange">
-		<span class="custom-tree-node" slot-scope="{ node, data }">
-        <span>{{ node.label }}</span>
-			<span>
-			  <el-button
-				  type="text"
-				  size="mini"
-				  @click="() => append(data)">
-				Append
-			  </el-button>
-			  <el-button
-				  type="text"
-				  size="mini"
-				  @click="() => remove(node, data)">
-				Delete
-			  </el-button>
-			</span>
-		</span>
-	</el-tree>
+	<el-row>
+		<el-col>
+			<el-tree :props="database" :load="loadNode" lazy show-checkbox @check-change="handleCheckChange">
+				<span class="custom-tree-node" slot-scope="{ node, data }">
+					<span>{{ node.label }}</span>
+					<span>
+						<el-button type="text" size="mini" @click="() => append(data)">Append</el-button>
+						<el-button type="text" size="mini" @click="() => remove(node, data)">Delete</el-button>
+					</span>
+				</span>
+			</el-tree>
+		</el-col>
+	</el-row>
 </template>
 
 <script>
@@ -31,7 +20,6 @@ export default {
 	title: "数据库信息",
 	icon: "iconfont icon-database1",
 	show: true,
-	login: true,
 	data() {
 		return {
 			database: []

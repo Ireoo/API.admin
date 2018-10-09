@@ -1,6 +1,6 @@
 <template>
 	<el-row class="main" type="flex" justify="center">
-		<el-col :span="12">
+		<el-col :span="12" style="min-width: 300px; max-width: 600px;">
 			<el-row class="form">
 				<el-col>
 					<label :class="{focus: focus.username}">

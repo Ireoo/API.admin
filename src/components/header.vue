@@ -1,57 +1,56 @@
 <template>
-	<el-menu
-		:class="{collapse}"
-		:default-active="$route.path"
-		mode="horizontal"
-		background-color="#515961"
-		text-color="#fff"
-		:router="true"
-		active-text-color="#ffd04b">
-
-		<el-row>
-
-			<el-col :span="12">
-				<el-menu-item class="logo" index="/home">
-					<i class="iconfont icon-api logo"></i>
-					<span slot="title">{{collapse ? '' : '琦益数据管理中心'}}</span>
-				</el-menu-item>
-				<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
-					<template slot="title">
-						<span slot="title">{{route.meta.title}}</span>
-					</template>
-					<el-menu-item :index="route.path">
-						<span slot="title">{{route.meta.title}}</span>
-					</el-menu-item>
-					<el-menu-item v-for="(router, i) in route.child" :key="i" :index="router.path">
-						<span slot="title">{{router.meta.title}}</span>
-					</el-menu-item>
-				</el-submenu>
-			</el-col>
-
-			<el-col class="right" :span="12">
-				<el-menu-item v-if="!$store.state.user.info" index="/login">
-					<i class="iconfont icon-denglu"></i>
-					<span slot="title">登陆</span>
-				</el-menu-item>
-
-				<el-menu-item v-if="!$store.state.user.info" index="/reg">
-					<span slot="title">注册</span>
-				</el-menu-item>
-
-
-				<el-menu-item v-if="$store.state.user.info" index="/account">
-					<i class="iconfont icon-denglu"></i>
-					<span slot="title">{{collapse ? '' : $store.state.user.info.username}}</span>
-				</el-menu-item>
-
-				<el-menu-item v-if="$store.state.user.info" index="/logout" @click="logout">
-					<span slot="title">退出</span>
-				</el-menu-item>
-			</el-col>
-
-		</el-row>
-
-	</el-menu>
+	<el-row>
+		<el-col>
+			<el-menu
+				:class="{collapse}"
+				:default-active="$route.path"
+				mode="horizontal"
+				background-color="#515961"
+				text-color="#fff"
+				:router="true"
+				active-text-color="#ffd04b"
+				menu-trigger="click"
+			>
+				<el-row>
+					<el-col :span="16">
+						<el-menu-item class="logo" index="/home">
+							<i class="iconfont icon-api logo"></i>
+							<span slot="title">{{collapse ? '' : '琦益数据管理中心'}}</span>
+						</el-menu-item>
+						<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
+							<template slot="title">
+								<span slot="title">{{route.meta.title}}</span>
+							</template>
+							<el-menu-item :index="route.path">
+								<span slot="title">{{route.meta.title}}</span>
+							</el-menu-item>
+							<el-menu-item v-for="(router, i) in route.child" :key="i" :index="router.path">
+								<span slot="title">{{router.meta.title}}</span>
+							</el-menu-item>
+						</el-submenu>
+					</el-col>
+					<el-col class="right" :span="8">
+						<el-menu-item v-if="!$store.state.user.info" index="/login">
+							<i class="iconfont icon-denglu"></i>
+							<span slot="title">{{collapse ? '' : "登陆"}}</span>
+						</el-menu-item>
+						<el-menu-item v-if="!$store.state.user.info" index="/reg">
+							<i class="iconfont icon-zhuceyaoqing" v-if="collapse"></i>
+							<span slot="title">{{collapse ? '' : "注册"}}</span>
+						</el-menu-item>
+						<el-menu-item v-if="$store.state.user.info" index="/account">
+							<i class="iconfont icon-denglu"></i>
+							<span slot="title">{{collapse ? '' : $store.state.user.info.username}}</span>
+						</el-menu-item>
+						<el-menu-item v-if="$store.state.user.info" index="/logout" @click="logout">
+							<i class="iconfont icon-tuichu1" v-if="collapse"></i>
+							<span slot="title">{{collapse ? '' : "退出"}}</span>
+						</el-menu-item>
+					</el-col>
+				</el-row>
+			</el-menu>
+		</el-col>
+	</el-row>
 </template>
 
 <script>
