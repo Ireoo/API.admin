@@ -64,6 +64,7 @@ export default {
 					if (data) {
 						this.$message.success(`${form.username} 用户登陆成功!`);
 						this.$store.commit("account.UPDATE", data);
+						this.$router.push({ path: this.$route.query.redirect || "/home" });
 					} else {
 						this.$message.error(`${form.username} 用户登陆失败,请稍后再试!`);
 					}

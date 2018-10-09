@@ -1,5 +1,6 @@
 <template>
 	<el-menu
+		:class="{collapse}"
 		:default-active="$route.path"
 		mode="horizontal"
 		background-color="#515961"
@@ -12,7 +13,7 @@
 			<el-col :span="12">
 				<el-menu-item class="logo" index="/home">
 					<i class="iconfont icon-api logo"></i>
-					<span slot="title">琦益数据管理中心</span>
+					<span slot="title">{{collapse ? '' : '琦益数据管理中心'}}</span>
 				</el-menu-item>
 				<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
 					<template slot="title">
@@ -40,7 +41,7 @@
 
 				<el-menu-item v-if="$store.state.user.info" index="/account">
 					<i class="iconfont icon-denglu"></i>
-					<span slot="title">{{$store.state.user.info.username}}</span>
+					<span slot="title">{{collapse ? '' : $store.state.user.info.username}}</span>
 				</el-menu-item>
 
 				<el-menu-item v-if="$store.state.user.info" index="/logout" @click="logout">
@@ -56,6 +57,7 @@
 <script>
 export default {
 	name: "Header",
+	props: ["collapse"],
 	methods: {
 		logout() {
 			this.$store.commit("account.REMOVE");
@@ -135,6 +137,18 @@ a:hover {
 
 ul {
 	list-style: none;
+}
+
+/*.collapse span {*/
+/*display: none;*/
+/*}*/
+
+.collapse li.logo {
+	width: 64px;
+}
+
+.collapse i {
+	margin-right: 0;
 }
 
 /* ul.left > li {

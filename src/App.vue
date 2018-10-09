@@ -1,15 +1,19 @@
 <template>
-	<el-container id="app" class="wrapper">
+	<el-container id="app" ref="app" class="wrapper">
 		<el-header>
-			<Header></Header>
+			<Header :collapse="collapse"></Header>
 		</el-header>
 		<el-container>
-			<el-aside v-if="$route.meta.show">
-				<Sider></Sider>
+			<el-aside :class="{collapse}" v-if="$route.meta.show">
+				<el-scrollbar>
+					<Sider :collapse="collapse"></Sider>
+				</el-scrollbar>
 			</el-aside>
 			<!-- <el-container> -->
 			<el-main :class="{body: !$route.meta.show}">
-				<router-view/>
+				<el-scrollbar>
+					<router-view/>
+				</el-scrollbar>
 			</el-main>
 			<!-- </el-container> -->
 		</el-container>
@@ -25,24 +29,38 @@ export default {
 	name: "App",
 	data() {
 		return {
-			uri: ""
+			uri: "",
+			collapse: document.documentElement.clientWidth < 500
 		};
 	},
 	components: {
 		Header,
 		Sider
 	},
-	mounted() {}
+	mounted() {
+		window.onresize = () => {
+			this.collapse = document.documentElement.clientWidth < 500;
+		};
+	}
 };
 </script>
 
 <style>
-@import url("//at.alicdn.com/t/font_860942_73ypiiiy1mc.css");
+@import url("//at.alicdn.com/t/font_860942_ktbhb8ijtc.css");
 
 * {
 	margin: 0;
 	padding: 0;
 	font-size: 14px;
+}
+
+.el-scrollbar {
+	height: 100%;
+	overflow: hidden;
+}
+
+.el-scrollbar__wrap {
+	overflow-x: hidden !important;
 }
 </style>
 
@@ -63,6 +81,11 @@ header {
 
 aside {
 	width: 240px !important;
+	background: #545c64;
+}
+
+aside.collapse {
+	width: 64px !important;
 	background: #545c64;
 }
 

@@ -1,28 +1,28 @@
 <template>
-	<el-menu :default-active="$route.path" class="sider" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" menu-trigger="click" :router="true" :collapse="isCollapse">
-		<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
-			<template slot="title">
-				<i :class="route.meta.icon"></i>
-				<span>{{route.meta.title}}</span>
-			</template>
-			<el-menu-item :index="route.path">
-				<i :class="route.meta.icon"></i>
-				<span slot="title">概况</span>
-			</el-menu-item>
-			<el-menu-item v-for="(router, i) in route.child" :key="i" :index="router.path">
-				<i :class="router.meta.icon"></i>
-				<span slot="title">{{router.meta.title}}</span>
-			</el-menu-item>
-		</el-submenu>
-	</el-menu>
+		<el-menu :default-active="$route.path" :class="['sider', {collapse}]" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" menu-trigger="click" :router="true" :collapse="collapse">
+			<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
+				<template slot="title">
+					<i :class="route.meta.icon"></i>
+					<span>{{route.meta.title}}</span>
+				</template>
+				<el-menu-item :index="route.path">
+					<i :class="route.meta.icon"></i>
+					<span slot="title">概况</span>
+				</el-menu-item>
+				<el-menu-item v-for="(router, i) in route.child" :key="i" :index="router.path">
+					<i :class="router.meta.icon"></i>
+					<span slot="title">{{router.meta.title}}</span>
+				</el-menu-item>
+			</el-submenu>
+		</el-menu>
 </template>
 
 <script>
 export default {
 	name: "Header",
+	props: ["collapse"],
 	data() {
 		return {
-			isCollapse: false,
 			show: ["App", "Account"]
 		};
 	},
@@ -44,12 +44,12 @@ export default {
 					// console.log(r);
 					return r;
 				});
-			console.log(routes);
+			// console.log(routes);
 			return routes;
 		}
 	},
 	mounted() {
-		console.log(this.$router.options.routes);
+		// console.log(this.$router.options.routes);
 	}
 };
 </script>
@@ -63,5 +63,10 @@ ul.sider {
 
 i {
 	margin-right: 10px;
+}
+
+ul.sider.collapse i {
+	margin-right: 0;
+	font-size: 24px;
 }
 </style>
