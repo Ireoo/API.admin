@@ -1,5 +1,14 @@
 <template>
-	<el-menu :default-active="$route.path" :class="['sider', {collapse}]" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" menu-trigger="click" :router="true" :collapse="collapse">
+	<el-menu
+		:default-active="$route.path"
+		:class="['sider', {collapse}]"
+		background-color="#545c64"
+		text-color="#fff"
+		active-text-color="#ffd04b"
+		menu-trigger="click"
+		:router="true"
+		:collapse="collapse"
+	>
 		<el-submenu v-for="(route, index) in routes" :key="index" :index="route.path">
 			<template slot="title">
 				<i :class="route.meta.icon"></i>
