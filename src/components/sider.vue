@@ -31,7 +31,7 @@
 
 <script>
 export default {
-	name: "Header",
+	name: "Sider",
 	props: ["collapse"],
 	data() {
 		return {

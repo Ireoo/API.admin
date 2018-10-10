@@ -2,7 +2,7 @@
 	<el-row>
 		<el-col>
 			<el-table :data="apps" border="" style="width: 100%">
-				<el-table-column fixed prop="_id" label="应用ID" width="240"></el-table-column>
+				<el-table-column prop="_id" label="应用ID"></el-table-column>
 				<el-table-column prop="title" label="名称"></el-table-column>
 				<el-table-column prop="secret" label="密钥"></el-table-column>
 				<el-table-column prop="createTime" label="创建时间"></el-table-column>

@@ -95,8 +95,12 @@ i {
 	margin-right: 10px;
 }
 
+.el-menu {
+	overflow: hidden;
+}
+
 .el-menu-item.logo {
-	width: 240px;
+	width: 190px;
 	background: RGB(65, 71, 78) !important;
 }
 

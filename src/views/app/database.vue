@@ -19,7 +19,7 @@ export default {
 	name: "info",
 	title: "数据库信息",
 	icon: "iconfont icon-database1",
-	show: true,
+	index: 1,
 	data() {
 		return {
 			database: []

@@ -5,7 +5,7 @@ export default {
 	name: "password",
 	title: "修改密码",
 	icon: "iconfont icon-password",
-	show: true
+	index: 0
 };
 </script>
 

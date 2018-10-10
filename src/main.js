@@ -8,6 +8,7 @@ import router from "./router";
 // 登陆拦截
 router.beforeEach((to, from, next) => {
 	if (/^\/[app|account]/.test(to.path)) {
+		to.meta.show = true;
 		// 判断该路由是否需要登录权限
 		if (store.state.user.info) {
 			// 通过vuex state获取当前的token是否存在

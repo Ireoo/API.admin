@@ -13,7 +13,9 @@
 			<el-main :class="{body: !$route.meta.show}">
 				<el-scrollbar>
 					<router-view :class="['content', {collapse}]"/>
-					Width: {{width}}
+					<el-footer>
+						<Footer :width="width"></Footer>
+					</el-footer>
 				</el-scrollbar>
 			</el-main>
 			<!-- <el-footer>Width: {{width}}</el-footer>
@@ -25,6 +27,7 @@
 <script>
 import Header from "./components/header.vue";
 import Sider from "./components/sider.vue";
+import Footer from "./components/footer.vue";
 
 export default {
 	name: "App",
@@ -39,7 +42,8 @@ export default {
 	},
 	components: {
 		Header,
-		Sider
+		Sider,
+		Footer
 	},
 	mounted() {
 		window.onresize = () => {
@@ -117,7 +121,7 @@ header {
 }
 
 aside {
-	width: 240px !important;
+	width: 190px !important;
 	background: #545c64;
 }
 

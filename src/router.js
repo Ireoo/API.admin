@@ -41,12 +41,8 @@ files.keys().forEach(key => {
 
 		meta: {
 			title: component.title,
-			nu: 0,
-			file: key,
 			index: component.index | 0,
-			icon: component.icon || "",
-			show: component.show || false,
-			login: component.login || false
+			icon: component.icon || ""
 		}
 	};
 
@@ -62,6 +58,8 @@ files.keys().forEach(key => {
 //     file: `To /home`
 // });
 
-const router = { routes };
+const router = {
+	routes
+};
 if (process.env.NODE_ENV === "production") router.mode = "history";
 export default new Router(router);
