@@ -56,12 +56,14 @@ export default {
 </script>
 
 <style>
-@import url("//at.alicdn.com/t/font_860942_tnt9fhllrnc.css");
+@import url("//at.alicdn.com/t/font_860942_9gqam4f076m.css");
 
 * {
 	margin: 0;
 	padding: 0;
 	font-size: 14px;
+	font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", Simsun,
+		sans-serif;
 }
 
 .el-scrollbar {
@@ -134,12 +136,9 @@ main {
 	padding: 0 !important;
 }
 
-main.body {
-	margin: auto;
-	max-width: 800px;
-}
-
 .content {
 	padding: 20px;
+	margin: auto;
+	max-width: 800px;
 }
 </style>

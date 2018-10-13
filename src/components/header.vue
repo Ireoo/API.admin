@@ -39,7 +39,7 @@
 							<span slot="title">{{collapse ? '' : "注册"}}</span>
 						</el-menu-item>
 						<el-menu-item v-if="$store.state.user.info" index="/account">
-							<i class="iconfont icon-denglu"></i>
+							<i class="iconfont icon-yonghu4"></i>
 							<span slot="title">{{collapse ? '' : $store.state.user.info.username}}</span>
 						</el-menu-item>
 						<el-menu-item v-if="$store.state.user.info" index="/logout" @click="logout">
@@ -155,14 +155,14 @@ ul {
 }
 
 /* ul.left > li {
-            line-height: 40px;
-            float: left;
-        }
+			            line-height: 40px;
+			            float: left;
+			        }
 
-        ul.left > li > a {
-            font-size: 14px;
-            font-weight: bold;
-        } */
+			        ul.left > li > a {
+			            font-size: 14px;
+			            font-weight: bold;
+			        } */
 
 ul.right > li {
 	text-align: right;

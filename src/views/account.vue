@@ -4,7 +4,7 @@
 export default {
 	name: "account",
 	title: "我的信息",
-	icon: "iconfont icon-denglu",
+	icon: "iconfont icon-yonghu",
 	index: 1,
 	show: true
 };
