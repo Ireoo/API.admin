@@ -142,10 +142,6 @@ ul {
 	list-style: none;
 }
 
-/*.collapse span {*/
-/*display: none;*/
-/*}*/
-
 .collapse li.logo {
 	width: 64px;
 }
@@ -153,16 +149,6 @@ ul {
 .collapse i {
 	margin-right: 0;
 }
-
-/* ul.left > li {
-			            line-height: 40px;
-			            float: left;
-			        }
-
-			        ul.left > li > a {
-			            font-size: 14px;
-			            font-weight: bold;
-			        } */
 
 ul.right > li {
 	text-align: right;

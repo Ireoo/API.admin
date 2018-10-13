@@ -1,7 +1,9 @@
 import Vue from "vue";
 
-Vue.prototype.console = txt => {
-	if (process.env.NODE_ENV !== "production") console.log(txt);
+const c = (...txt) => {
+	if (process.env.NODE_ENV !== "production") console.log(...txt);
 };
 
-export default Vue;
+Vue.prototype.console = c;
+
+export default c;

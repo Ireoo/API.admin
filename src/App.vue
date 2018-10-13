@@ -10,9 +10,9 @@
 				</el-scrollbar>
 			</el-aside>
 			<!-- <el-container> -->
-			<el-main :class="{body: !$route.meta.show}">
+			<el-main>
 				<el-scrollbar>
-					<router-view :class="['content', {collapse}]"/>
+					<router-view :class="['content', {collapse}, {body: !$route.meta.show}]"/>
 					<el-footer>
 						<Footer :width="width"></Footer>
 					</el-footer>
@@ -138,6 +138,9 @@ main {
 
 .content {
 	padding: 20px;
+}
+
+.content.body {
 	margin: auto;
 	max-width: 800px;
 }
