@@ -1,7 +1,7 @@
 <template>
 	<el-row>
 		<el-col>
-			<el-table :data="appsShow" border="" style="width: 100%">
+			<el-table :data="appsShow" border="" v-loading="loading" style="width: 100%">
 				<el-table-column prop="title" label="名称"></el-table-column>
 				<el-table-column prop="_id" label="APP id"></el-table-column>
 				<el-table-column prop="secret" label="APP secret"></el-table-column>
@@ -44,7 +44,8 @@ export default {
 	components: {},
 	data() {
 		return {
-			apps: []
+			apps: [],
+			loading: true
 		};
 	},
 	methods: {
@@ -74,6 +75,7 @@ export default {
 	mounted() {
 		this.$http("apps/find", {})
 			.then(data => {
+				this.loading = false;
 				this.apps = data.map(app => {
 					app.del = false;
 					app.update = false;
@@ -82,6 +84,7 @@ export default {
 				});
 			})
 			.catch(e => {
+				this.loading = false;
 				this.$message.error(e);
 			});
 	}

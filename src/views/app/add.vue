@@ -7,7 +7,25 @@
 					label="应用名称"
 					:rules="{required: true, message: '不能为空', trigger: 'blur'}"
 				>
-					<el-input v-model="form.title"></el-input>
+					<el-input :disabled="loading" v-model="form.title"></el-input>
+				</el-form-item>
+				<el-form-item label="应用简介">
+					<el-input :disabled="loading" type="textarea" v-model="form.desc"></el-input>
+				</el-form-item>
+				<el-form-item label="是否公开">
+					<el-radio-group :disabled="loading" v-model="form.own">
+						<el-radio :label="1" disabled>私有</el-radio>
+						<el-radio :label="0">公开</el-radio>
+					</el-radio-group>
+				</el-form-item>
+				<el-form-item
+					label="容量大小"
+					prop="size"
+					:rules="[{required: true, message: '不能为空', trigger: 'blur'}]"
+				>
+					<el-input :disabled="loading" v-model.number="form.size">
+						<template slot="append">GB</template>
+					</el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" @click="onSubmit('form')" :loading="loading">创建</el-button>
@@ -26,7 +44,10 @@ export default {
 	data() {
 		return {
 			form: {
-				title: ""
+				title: "",
+				desc: "",
+				own: 0,
+				size: 1
 			},
 			loading: false
 		};
