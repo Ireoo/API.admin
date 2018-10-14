@@ -85,7 +85,8 @@ export default {
 		reg() {
 			if (this.form.username === "") return this.$refs.username.focus();
 			if (this.form.password === "") return this.$refs.password.focus();
-			if (this.form.passwordTwo === "") return this.$refs.passwordTwo.focus();
+			if (this.form.passwordTwo === "")
+				return this.$refs.passwordTwo.focus();
 			this.loading = true;
 			// this.console(this.form);
 			let form = JSON.parse(JSON.stringify(this.form));
@@ -101,11 +102,15 @@ export default {
 					.catch(e => {
 						switch (e.code) {
 							case 11000:
-								this.$message.error(`该用户已经存在,请尝试更换用户名!`);
+								this.$message.error(
+									`该用户已经存在,请尝试更换用户名!`
+								);
 								break;
 
 							default:
-								this.$message.error(`未知错误: ${JSON.stringify(e)}`);
+								this.$message.error(
+									`未知错误: ${JSON.stringify(e)}`
+								);
 								break;
 						}
 						this.loading = false;
@@ -118,10 +123,6 @@ export default {
 </script>
 
 <style scoped>
-.el-row.main {
-	padding: 20px;
-}
-
 div.el-row.form > div.el-col {
 	margin-bottom: 20px;
 }
