@@ -4,11 +4,12 @@
 			<Header :collapse="collapse"></Header>
 		</el-header>
 		<el-container>
-			<el-aside :class="{collapse: mini}" v-if="$route.meta.show">
+			<!-- <el-aside :class="{collapse: mini}" v-if="$route.meta.show">
 				<el-scrollbar>
 					<Sider :collapse="mini"></Sider>
 				</el-scrollbar>
-			</el-aside>
+			</el-aside>-->
+
 			<!-- <el-container> -->
 			<el-main>
 				<el-scrollbar>
@@ -56,7 +57,7 @@ export default {
 </script>
 
 <style>
-@import url("//at.alicdn.com/t/font_860942_9gqam4f076m.css");
+@import url("//at.alicdn.com/t/font_860942_zii3s1v7nvb.css");
 
 * {
 	margin: 0;
@@ -64,6 +65,7 @@ export default {
 	font-size: 14px;
 	font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", Simsun,
 		sans-serif;
+	outline: none;
 }
 
 .el-scrollbar {
@@ -118,7 +120,7 @@ export default {
 }
 
 header {
-	background: #545c64;
+	/* background: #515961; */
 	padding: 0;
 }
 
@@ -138,10 +140,12 @@ main {
 
 .content {
 	padding: 20px;
+	margin: 0 auto;
+	max-width: 1200px;
 }
 
-.content.body {
+/* .content.body {
 	margin: auto;
 	max-width: 800px;
-}
+} */
 </style>
