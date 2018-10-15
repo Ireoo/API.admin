@@ -227,7 +227,9 @@ a i {
 }
 
 a:hover span,
-a:hover i {
+a:hover i,
+a.router-link-active span,
+a.router-link-active i {
 	color: #333;
 }
 
@@ -251,7 +253,8 @@ ul {
 }
 
 a:hover i.logo,
-i.logo {
+i.logo,
+a.router-link-active i.logo {
 	color: #4898f8;
 	font-size: 30px;
 	padding-right: 10px;
