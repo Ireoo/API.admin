@@ -51,7 +51,7 @@
 
 			<ul class="left">
 				<li>
-					<router-link to="/">
+					<router-link to="/home">
 						<i class="iconfont icon-iconset0357 logo"></i>
 						<span>{{collapse ? '' : '爱数据'}}</span>
 					</router-link>
@@ -89,7 +89,7 @@
 						</span>
 						<el-dropdown-menu slot="dropdown">
 							<el-dropdown-item command="/app/add">创建一个应用</el-dropdown-item>
-							<el-dropdown-item command="/app">管理所有应用</el-dropdown-item>
+							<el-dropdown-item command="/home">管理所有应用</el-dropdown-item>
 						</el-dropdown-menu>
 					</el-dropdown>
 				</li>
