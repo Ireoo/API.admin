@@ -2,8 +2,8 @@ import Vue from "vue";
 import axios from "axios";
 import c from "./console";
 
-axios.defaults.headers.post["Content-Type"] =
-	"application/x-www-form-urlencoded";
+// axios.defaults.headers.post["Content-Type"] =
+// "application/x-www-form-urlencoded";
 axios.defaults.headers.post["Authorization"] =
 	"94f3eee0-218f-41fc-9318-94cf5430fc7f";
 
