@@ -56,7 +56,7 @@ export default {
 			this.console(app);
 			app.row.del = true;
 			this.$http("apps/remove", { where: { _id: app.row._id } })
-				.then(data => {
+				.then(() => {
 					this.$message.success("删除成功!");
 					// this.apps.splice(app.$index,1);
 					app.row.show = false;

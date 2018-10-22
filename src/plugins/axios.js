@@ -7,7 +7,7 @@ import c from "./console";
 axios.defaults.headers.post["Authorization"] =
 	"94f3eee0-218f-41fc-9318-94cf5430fc7f";
 
-const api = "https://apo.herokuapp.com/";
+const api = "https://api.ireoo.com/";
 
 Vue.prototype.$http = (url, data) => {
 	return new Promise((resolve, reject) => {
