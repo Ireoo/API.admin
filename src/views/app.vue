@@ -2,8 +2,8 @@
 	<el-row>
 		<el-col style="text-align: right; margin-bottom: 20px;">
 			<el-button-group>
-				<el-button :type="!list ? 'primary' : ''" icon="iconfont icon-list1" @click="list=false"></el-button>
-				<el-button :type="list ? 'primary' : ''" icon="iconfont icon-list" @click="list=true"></el-button>
+				<el-button :type="!list ? 'primary' : ''" size="mini" icon="iconfont icon-list1" @click="list=false"></el-button>
+				<el-button :type="list ? 'primary' : ''"  size="mini" icon="iconfont icon-list" @click="list=true"></el-button>
 			</el-button-group>
 		</el-col>
 		<el-col v-if="list">
@@ -21,7 +21,7 @@
 						<span style="margin-left: 10px">{{ $time(scope.row.createTime).format("YYYY-MM-DD") }}</span>
 					</template>
 				</el-table-column>
-				<el-table-column fixed="right" label="操作" width="200">
+				<el-table-column fixed="right" label="操作" width="80">
 					<template slot-scope="scope">
 						<el-button
 							@click="secret(scope.row)"
@@ -29,15 +29,7 @@
 							:disabled="scope.row.del"
 							type="primary"
 							size="mini"
-						>重置密钥
-						</el-button>
-						<el-button
-							@click="del(scope.row)"
-							:loading="scope.row.del"
-							:disabled="scope.row.update"
-							type="danger"
-							size="mini"
-						>删除
+						>编辑
 						</el-button>
 					</template>
 				</el-table-column>
@@ -50,24 +42,14 @@
 						<div slot="header" class="clearfix">
 							<span><router-link :to="`/app/item/${app._id}`">{{app.title}}</router-link></span>
 							<el-button
-								style="float: right; padding: 3px 5px;"
-								type="danger"
-								size="mini"
-								@click="del(app)"
-								:loading="app.del"
-								:disabled="app.update"
-							>
-								删除
-							</el-button>
-							<el-button
-								style="float: right; padding: 3px 5px; margin-right: 15px;"
-								type="primary"
+								style="float: right; padding: 5px 10px;"
+								type=""
 								size="mini"
 								@click="secret(app)"
 								:loading="app.update"
 								:disabled="app.del"
 							>
-								重置密钥
+								编辑
 							</el-button>
 						</div>
 
