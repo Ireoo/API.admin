@@ -18,15 +18,19 @@ const files = require.context("./views", true, /\.vue$/);
 
 files.keys().forEach(key => {
 	let file = key.replace(/(\.\/|\.vue)/g, "");
+	let _path = file.replace("#", ":");
 
 	let fileArray = file.split("/");
-	let filename = fileArray.pop().replace(/\b(\w)(\w*)/g, function($0, $1, $2) {
-		return $1.toUpperCase() + $2.toLowerCase();
-	});
+	let filename = fileArray
+		.pop()
+		.replace(/\b([a-zA-Z#])(\w*)/g, function($0, $1, $2) {
+			return $1.replace("#", "").toUpperCase() + $2.toLowerCase();
+		})
+		.replace("#", "");
 	let dir = fileArray.join("/");
 	let dirname = fileArray
 		.map(d => {
-			return d.replace(/\b(\w)(\w*)/g, function($0, $1, $2) {
+			return d.replace(/\b([a-zA-Z#])(\w*)/g, function($0, $1, $2) {
 				return $1.toUpperCase() + $2.toLowerCase();
 			});
 		})
@@ -35,8 +39,14 @@ files.keys().forEach(key => {
 	let component = require(`@/views/${file}`).default;
 
 	let route = {
-		path: filename.toLowerCase() === "index" ? `/${dir}` : `/${file.toLowerCase()}`,
-		name: filename.toLowerCase() === "index" && dirname !== "" ? dirname : filename,
+		path:
+			filename.toLowerCase() === "index"
+				? `/${dir}`
+				: `/${_path.toLowerCase()}`,
+		name:
+			filename.toLowerCase() === "index" && dirname !== ""
+				? dirname
+				: filename,
 		component: component,
 
 		meta: {
@@ -48,7 +58,12 @@ files.keys().forEach(key => {
 
 	routes.push(route);
 
-	if (process.env.NODE_ENV !== "production") console.log(`加载文件: ${key} \r\n挂载点: ${route.path} \r\n完成!`);
+	if (process.env.NODE_ENV !== "production")
+		console.log(
+			`加载文件: ${key} \r\n名称: ${route.name} \r\n挂载点: ${
+				route.path
+			} \r\n完成!`
+		);
 });
 
 // routes.push({

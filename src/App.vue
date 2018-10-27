@@ -13,7 +13,7 @@
 			<!-- <el-container> -->
 			<el-main>
 				<el-scrollbar>
-					<router-view :class="['content', {collapse}, {body: !$route.meta.show}]"/>
+					<router-view :class="['content', {collapse}, {body: !$route.meta.show}]" :collapse="collapse"/>
 					<el-footer>
 						<Footer :width="width"></Footer>
 					</el-footer>
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style>
-@import url("//at.alicdn.com/t/font_860942_zii3s1v7nvb.css");
+@import url("//at.alicdn.com/t/font_860942_w7mu9zvz5o.css");
 
 * {
 	margin: 0;
