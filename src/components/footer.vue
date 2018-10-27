@@ -1,6 +1,6 @@
 <template>
 	<el-row>
-		<el-col>{{$route.meta}}</el-col>
+		<el-col v-if="DEBUG">{{$route.meta}}</el-col>
 		<el-col>&copy; {{new Date().getFullYear()}} qiyi.io</el-col>
 	</el-row>
 </template>

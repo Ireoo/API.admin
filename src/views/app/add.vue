@@ -58,11 +58,12 @@ export default {
 			this.$refs[formName].validate(valid => {
 				if (valid) {
 					let form = JSON.parse(JSON.stringify(this.form));
-					form.secret = this.$md5(new Date().getTime());
+					form.uuid = this.$store.state.user.info._id;
+					form.secret = this.$uuid();
 					form.createTime = new Date().getTime();
 					form.updateTime = new Date().getTime();
 					this.$http("apps/insert", { data: form })
-						.then(data => {
+						.then(() => {
 							this.$message.success(
 								`添加应用 ${form.title} 成功!`
 							);
