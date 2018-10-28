@@ -86,12 +86,18 @@ export default {
 			where: {
 				_id: this.$route.params.id,
 				uuid: this.$store.state.user.info._id
+			},
+			other: {
+				show: {
+					_id: 0,
+					uuid: 0,
+					createTime: 0,
+					secret: 0
+				}
 			}
 		})
 			.then(data => {
 				if (data) {
-					delete data._id;
-					delete data.uuid;
 					this.form = data;
 				} else {
 					this.$message.error(`没有此应用存在!`);
