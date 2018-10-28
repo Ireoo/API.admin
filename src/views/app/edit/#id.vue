@@ -58,9 +58,6 @@ export default {
 			this.$refs[formName].validate(valid => {
 				if (valid) {
 					let form = JSON.parse(JSON.stringify(this.form));
-					form.uuid = this.$store.state.user.info._id;
-					form.secret = this.$uuid();
-					form.createTime = new Date().getTime();
 					form.updateTime = new Date().getTime();
 					this.$http("apps/update", {
 						data: form,
