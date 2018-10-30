@@ -73,6 +73,11 @@ files.keys().forEach(key => {
 //     file: `To /home`
 // });
 
+routes.push({
+	path: "*",
+	redirect: "/"
+});
+
 const router = {
 	routes
 };
