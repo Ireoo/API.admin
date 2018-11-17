@@ -27,7 +27,7 @@ export default {
 	},
 	methods: {
 		loadNode(node, resolve) {
-			console.log(node);
+			this.console(node);
 			resolve([]);
 		},
 		handleCheckChange() {}

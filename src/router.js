@@ -59,6 +59,7 @@ files.keys().forEach(key => {
 	routes.push(route);
 
 	if (process.env.NODE_ENV !== "production")
+		// eslint-disable-next-line
 		console.log(
 			`加载文件: ${key} \r\n名称: ${route.name} \r\n挂载点: ${
 				route.path
