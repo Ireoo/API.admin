@@ -26,7 +26,7 @@ function md5(str) {
 	return str;
 }
 
-module.exports = {
+exports = module.exports = {
 	encrypt,
 	decrypt,
 	md5
