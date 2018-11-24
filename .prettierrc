@@ -1,6 +1,6 @@
 {
-	"tabWidth": 4,
-	"useTabs": true,
+	"tabWidth": 2,
+	"useTabs": false,
 	"parser": "babylon",
 	"trailingComma": "none",
 	"jsxBracketSameLine": true,
@@ -19,14 +19,14 @@
 			"files": "*.vue",
 			"options": {
 				"parser": "vue",
-				"tabWidth": 4
+				"tabWidth": 2
 			}
 		},
 		{
 			"files": "*.{css,sass,scss,less}",
 			"options": {
 				"parser": "css",
-				"tabWidth": 4
+				"tabWidth": 2
 			}
 		},
 		{
