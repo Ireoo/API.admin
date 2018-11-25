@@ -8,6 +8,5 @@ build:
     - npm run build
     - npm i -g --unsafe-perm now
     - ls
-    - cd dist
     - now --token vbblGs1uB9MqvC4z1w0Q9kZ9 --npm
     - now alias
