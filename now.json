@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "alias": ["admin"]
+  "alias": ["admin"],
+  "builds": [
+    { "src": "*/app.js", "use": "@now/node-server", "config": { "maxLambdaSize": "20mb" } }
+  ]
 }
