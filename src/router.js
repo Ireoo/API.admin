@@ -80,5 +80,5 @@ routes.push({
 const router = {
   routes
 };
-// if (process.env.NODE_ENV === "production") router.mode = "history";
+if (process.env.NODE_ENV === "production") router.mode = "history";
 export default new Router(router);
