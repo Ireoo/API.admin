@@ -1,0 +1,9 @@
+build:
+  script:
+    - curl -sL https://deb.nodesource.com/setup_11.x | bash -
+    - apt-get install -y nodejs
+    - node -v
+    - npm -v
+    - npm i
+    - npm i -g now
+    - now

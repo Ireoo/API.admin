@@ -139,7 +139,7 @@ main {
 }
 
 .content {
-	padding: 50px 20px 20px 20px;
+	padding: 50px 0 20px 0;
 	margin: 0 auto;
 	max-width: 1200px;
 }
