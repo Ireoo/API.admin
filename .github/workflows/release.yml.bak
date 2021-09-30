@@ -1,0 +1,113 @@
+name: Release
+
+on:
+  push:
+    branch: master
+
+jobs:
+  release:
+    name: Release
+
+    runs-on: macos
+
+    steps:
+      - name: init
+        uses: actions/checkout@v1
+
+      - name: get package
+        id: package
+        uses: Ireoo/get-package@v1
+        with:
+          path: package.json
+          key: version
+
+      - name: create release
+        id: release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name: v${{steps.package.outputs.version}}
+          release_name: V${{steps.package.outputs.version}}
+          draft: false
+          prerelease: false
+
+      - name: init cache
+        env:
+          git_cache: ${{secrets.GIT_CACHE}}
+          upload_url: ${{steps.release.outputs.upload_url}}
+          github_sha: ${{github.sha}}
+        run: |
+          git clone $git_cache cache
+          cd cache
+          echo "$upload_url" > $github_sha.txt
+          git add $github_sha.txt
+          git commit -m "$github_sha"
+          git push
+          
+  build:
+    needs: [release]
+
+    runs-on: ${{matrix.os}}-latest
+
+    strategy:
+      matrix:
+        node: [12]
+        os: [macOS] #, ubuntu, windows]
+
+    steps:
+      - name: install
+        uses: actions/checkout@master
+        with:
+          node-version: ${{matrix.node}}
+
+      - name: get package version
+        id: package
+        uses: Ireoo/get-package@v1
+        with:
+          path: ./package.json
+          key: version
+
+      - name: build
+        run: |
+          npm i
+          npm run build
+
+      - name: upload
+        uses: actions/upload-artifact@master
+        with:
+          name: dist
+          path: ./
+
+      - name: init cache
+        id: cache
+        shell: bash
+        env:
+          git_cache: ${{secrets.GIT_CACHE}}
+          github_sha: ${{github.sha}}
+        run: |
+          git clone $git_cache cache
+          cd cache
+          echo "::set-output name=upload_url::$(cat $github_sha.txt)"
+
+      # - name: Upload Release windows
+      #   if: startsWith(matrix.os, 'window')
+      #   uses: actions/upload-release-asset@v1.0.1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.cache.outputs.upload_url }}
+      #     asset_path: build/api.exe
+      #     asset_name: api-${{matrix.os}}.exe
+      #     asset_content_type: application/x-executable
+
+      - name: Upload Release
+        # if: startsWith(matrix.os, 'mac') || startsWith(matrix.os, 'ubuntu')
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.cache.outputs.upload_url }}
+          asset_path: dist.zip
+          asset_name: dist.zip
+          asset_content_type: application/x-executable
