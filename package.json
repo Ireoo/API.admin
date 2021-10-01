@@ -1,13 +1,14 @@
 {
   "name": "admin",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "main": "app.js",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "cross-env NODE_ENV=production vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "precommit": "pretty-quick --staged"
+    "version": "node package.js",
+    "precommit": "npm run version && git add package.json && pretty-quick --staged"
   },
   "dependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",
