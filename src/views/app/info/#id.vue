@@ -20,8 +20,8 @@
             暂时没有添加任务数据表,请使用接口创建自己的数据吧!
           </div>
           <ul v-if="collections.data.length !== 0">
-            <li v-for="c in collections.data" :key="c.info.uuid">
-              {{ c.name }}
+            <li v-for="c in collections.data" :key="c">
+              {{ c }}
             </li>
           </ul>
         </el-tab-pane>
@@ -71,6 +71,7 @@ export default {
       })
       .catch(error => {
         this.$message.error(error);
+        this.fullscreenLoading = false;
       });
 
     this.collections = { loading: true, data: [] };

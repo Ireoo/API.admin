@@ -8,7 +8,7 @@ axios.defaults.headers.post["Authorization"] =
   "94f3eee0-218f-41fc-9318-94cf5430fc7f";
 
 const api =
-  process.env.NODE_ENV === "production" ? "/" : "http://192.168.204.129:2019/";
+  process.env.NODE_ENV === "production" ? "/" : "http://127.0.0.1:2019/";
 
 Vue.prototype.$http = (url, data) => {
   return new Promise((resolve, reject) => {
