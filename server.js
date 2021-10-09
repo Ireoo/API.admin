@@ -11,7 +11,8 @@ const compression = require("compression");
  */
 app.use(
   morgan(
-    '[:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time ms'
+    process.env.LOG ||
+      '[:date[web]] :method HTTP/:http-version :status :response-time ms :res[content-length] :referrer :url ":user-agent"'
   )
 );
 
