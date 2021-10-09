@@ -1,6 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const consola = require("consola");
+const axios = require("axios");
+
+axios.defaults.headers.post["Authorization"] =
+  "94f3eee0-218f-41fc-9318-94cf5430fc7f";
 
 const router = require("express").Router();
 
