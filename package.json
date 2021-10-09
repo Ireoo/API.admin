@@ -1,12 +1,13 @@
 {
   "name": "admin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "main": "app.js",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "cross-env NODE_ENV=production vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "start": "node server.js",
     "version": "node package.js",
     "precommit": "npm run version && git add package.json && pretty-quick --staged"
   },
@@ -16,14 +17,21 @@
     "@vue/cli-service": "^3.1.4",
     "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
+    "compression": "^1.7.4",
     "connect-history-api-fallback": "^1.5.0",
+    "consola": "^2.15.3",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
     "element-ui": "^2.10.1",
     "eslint": "^5.9.0",
     "eslint-plugin-vue": "^4.7.1",
+    "express": "^4.17.1",
+    "husky": "^1.2.0",
     "md5": "^2.2.1",
     "moment": "^2.22.2",
+    "morgan": "^1.10.0",
+    "prettier": "^1.15.2",
+    "pretty-quick": "^1.8.0",
     "request": "^2.88.0",
     "uuid": "^3.3.2",
     "vue": "^2.5.17",
@@ -31,10 +39,7 @@
     "vue-router": "^3.0.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
-    "vuex": "^3.0.1",
-    "husky": "^1.2.0",
-    "prettier": "^1.15.2",
-    "pretty-quick": "^1.8.0"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {},
   "eslintConfig": {
