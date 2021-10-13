@@ -16,8 +16,16 @@ Vue.prototype.$http = (url, data) => {
     axios
       .post(`${api}${url}`, data)
       .then(result => {
-        c("[DATA] (output) ->", JSON.stringify(result.data));
-        let data = JSON.parse(JSON.stringify(result.data).toLocaleLowerCase());
+        let data = JSON.parse(JSON.stringify(result.data));
+        if (data.Success) {
+          data.success = data.Success;
+          delete data.Success;
+        }
+        if (data.Data) {
+          data.data = data.Data;
+          delete data.Data;
+        }
+        c("[DATA] (output) ->", data);
         if (data.success) resolve(data.data);
         else reject(data.data);
       })
